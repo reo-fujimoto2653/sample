@@ -25,32 +25,32 @@ const Home: NextPage = () => {
 
   const { data, error, mutate } = useSWR<Inquiries>("/api/inquiries", fetcher);
 
-  // const onSubmit = async (e: React.SyntheticEvent) => {
-  //   e.preventDefault();
+  const onSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
 
-  //   const response = await fetch("/api/inquiries", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       name,
-  //       email,
-  //       subject,
-  //       message,
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
+    const response = await fetch("/api/inquiries", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        email,
+        subject,
+        message,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  //   clearForm();
-  //   mutate();
-  // };
+    clearForm();
+    mutate();
+  };
 
-  // if (error) return <div>Error has occurred</div>;
-  // if (!data) return <div>Now loading...</div>;
+  if (error) return <div>Error has occurred</div>;
+  if (!data) return <div>Now loading...</div>;
 
   return (
     <div>
-      {/* <form
+      <form
         action=""
         className="bg-white rounded px-8 shadow-md mt-3 p-3"
         onSubmit={onSubmit}
@@ -103,7 +103,7 @@ const Home: NextPage = () => {
             Post
           </button>
         </div>
-      </form> */}
+      </form>
       <div className="container mx-auto">
         <table className="x-full text-sm text-left text-gray-500 mt-3">
           <thead className="text-xs text-gray-700 bg-gray-50">
@@ -114,7 +114,7 @@ const Home: NextPage = () => {
               <th className="py-3 px-6">Message</th>
             </tr>
           </thead>
-          {/* <tbody>
+          <tbody>
             {data.map((inquiry) => {
               return (
                 <tr className="bg-white border-b" key={inquiry.id}>
@@ -125,7 +125,7 @@ const Home: NextPage = () => {
                 </tr>
               );
             })}
-          </tbody> */}
+          </tbody>
         </table>
       </div>
     </div>
